@@ -358,3 +358,54 @@ deploy:
 
 后续会持续不断的对博客进行定制和优化，本篇文章也会不断的更新。
 
+
+-----------------------------------------------------------------
+---------------------我是一个分割线------------------------------
+
+距离上次搭建博客已经很久了，哦， 不对，才过去不到一个小时时间。
+上次遗留了一个比较重要的问题：
+
+###### 就是，hexo文件夹内是存放md源文件，还包括一些theme文件，渲染过的html、css、js等文件。hexo d部署完成的时候，只是把对应的public文件夹目录下的内容给推送到了github上$shuangyangqian.github.io上了，并且会覆盖。因此md文件的保存成为了一个问题，解决办法有两个：
+
+* 1.本地保存，再别的地方编辑，完成之后复制到hexo目录下，然后执行渲染，上传等操作。当然，这个别的地方可以仅仅是本地的一个目录，也可以是github的一个仓库（方便保管），what ever。
+* 2.将hexo文件夹本身关联到github的一个仓库。
+
+上述第一种方法是我刚开始用的，也不麻烦，但是存在一个问题：
+
+* 把md文件单独存储，看似很方便，但是总感觉怪怪的。
+* 一些config配置无法保存，如hexo的配置，theme的配置，一旦换电脑，如果丢失的话很难。
+* 
+
+那么针对第二种办法，记录一下我的操作：
+
+##### 1.github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。
+
+##### 2.在本地hexo根目录执行下述操作
+
+```
+# git init
+# git config --global user.name shuangyangqian
+# git config --global user.email qsyqian@gmail.com
+# git remote add origin git@github.com:shuangyangqian/shuangyangqian-hexo.git
+# git pull //该步骤是同步一下远程的文件
+# git add .
+# git commit //新建一个commit，把本地的source、theme、public等目录都上传上去
+# git push --set-upstream origin master
+```
+
+这样本地的hexo目录也就是对应一个新建的github仓库，我们的md源文件和一些配置信息也不会丢失了。
+
+##### 3.写博客的步骤
+
+写博客的步骤和之前的大差不差，不过就是hexo本身成为一个repo，我们写完博客之后，执行hexo相关的命令deploy我们的博客。
+
+然后还需要git相关的操作把我们的md源文件上传到shuangyangqian-hexo仓库中去。
+
+#### 经过这次原理上的分析，基本上hexo的原理也差不多了。
+
+hexo g：只负责渲染md文件到html、css等到public目录下；
+hexo d：负责将public目录下的文件全部上传到$username.github.io的仓库中，执行的是覆盖操作。
+
+hexo+github搭建博客基本上研究到这里，以后是一些定制化的配置。基本上不做深入研究。
+
+#### 最重要的还是能够坚持写博客。
