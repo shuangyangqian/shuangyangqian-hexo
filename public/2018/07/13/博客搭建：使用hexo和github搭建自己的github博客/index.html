@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="shuangyangqian">
 <meta property="og:description" content="使用hexo和github来搭建自己的github博客写这篇文章的原因： 自己在搭建博客的时候，查看了网上很多教程，其中99%的博客基本上都是一样的，课件文档的质量着实一般。按照其办法，基本不可能完全部署成功。经过深入研究和尝试。自己初步搭建好一套，并且将尝试过程中所研究出来的原理记录下来。 因为电脑使用的是公司的电脑，在搭建博客过程中所需要安装软件，还有自建hexo目录和修改对应的配置，怕日后换">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T02:53:20.844Z">
+<meta property="og:updated_time" content="2018-07-13T04:04:33.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客搭建：使用hexo和github搭建自己的github博客">
 <meta name="twitter:description" content="使用hexo和github来搭建自己的github博客写这篇文章的原因： 自己在搭建博客的时候，查看了网上很多教程，其中99%的博客基本上都是一样的，课件文档的质量着实一般。按照其办法，基本不可能完全部署成功。经过深入研究和尝试。自己初步搭建好一套，并且将尝试过程中所研究出来的原理记录下来。 因为电脑使用的是公司的电脑，在搭建博客过程中所需要安装软件，还有自建hexo目录和修改对应的配置，怕日后换">
@@ -224,7 +224,28 @@
 <h5 id="博客上传之后，去github仓库里找不到该md文件。"><a href="#博客上传之后，去github仓库里找不到该md文件。" class="headerlink" title="博客上传之后，去github仓库里找不到该md文件。"></a>博客上传之后，去github仓库里找不到该md文件。</h5><p>这个我也没整明白。是md文件直接上传，还是上传的是渲染好的静态文件。目前的理解是后者。但是，如果是后者，呢么本地的md文件丢失了，岂不是只剩下渲染后的文件了，之前的md文件已经找不到了。（该问题还需要研究）</p>
 <h3 id="8-后记"><a href="#8-后记" class="headerlink" title="8.后记"></a>8.后记</h3><p>这篇文章简单记录了搭建博客的过程，一些问题交代的可能也不是很清楚，对hexo本身和主题的配置也少之又少。但是整个流程走通了，对于最基本的需求（写博客）也满足了。</p>
 <p>后续会持续不断的对博客进行定制和优化，本篇文章也会不断的更新。</p>
-
+<hr>
+<p>———————我是一个分割线——————————</p>
+<p>距离上次搭建博客已经很久了，哦， 不对，才过去不到一个小时时间。<br>上次遗留了一个比较重要的问题：</p>
+<p><strong> 就是，hexo文件夹内是存放md源文件，还包括一些theme文件，渲染过的html、css、js等文件。hexo d部署完成的时候，只是把对应的public文件夹目录下的内容给推送到了github上$shuangyangqian.github.io上了，并且会覆盖。因此md文件的保存成为了一个问题，解决办法有两个：</strong></p>
+<ul>
+<li>1.本地保存，再别的地方编辑，完成之后复制到hexo目录下，然后执行渲染，上传等操作。当然，这个别的地方可以仅仅是本地的一个目录，也可以是github的一个仓库（方便保管），what ever。</li>
+<li>2.将hexo文件夹本身关联到github的一个仓库。</li>
+</ul>
+<p>上述第一种方法是我刚开始用的，也不麻烦，但是存在一个问题：</p>
+<ul>
+<li>把md文件单独存储，看似很方便，但是总感觉怪怪的。</li>
+<li>一些config配置无法保存，如hexo的配置，theme的配置，一旦换电脑，如果丢失的话很难。</li>
+<li></li>
+</ul>
+<p>那么针对第二种办法，记录一下我的操作：</p>
+<h5 id="1-github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。"><a href="#1-github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。" class="headerlink" title="1.github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。"></a>1.github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。</h5><h5 id="2-在本地hexo根目录执行下述操作"><a href="#2-在本地hexo根目录执行下述操作" class="headerlink" title="2.在本地hexo根目录执行下述操作"></a>2.在本地hexo根目录执行下述操作</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># git init</span><br><span class="line"># git config --global user.name shuangyangqian</span><br><span class="line"># git config --global user.email qsyqian@gmail.com</span><br><span class="line"># git remote add origin git@github.com:shuangyangqian/shuangyangqian-hexo.git</span><br><span class="line"># git pull //该步骤是同步一下远程的文件</span><br><span class="line"># git add .</span><br><span class="line"># git commit //新建一个commit，把本地的source、theme、public等目录都上传上去</span><br><span class="line"># git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+<p>这样本地的hexo目录也就是对应一个新建的github仓库，我们的md源文件和一些配置信息也不会丢失了。</p>
+<h5 id="3-写博客的步骤"><a href="#3-写博客的步骤" class="headerlink" title="3.写博客的步骤"></a>3.写博客的步骤</h5><p>写博客的步骤和之前的大差不差，不过就是hexo本身成为一个repo，我们写完博客之后，执行hexo相关的命令deploy我们的博客。</p>
+<p>然后还需要git相关的操作把我们的md源文件上传到shuangyangqian-hexo仓库中去。</p>
+<h4 id="经过这次原理上的分析，基本上hexo的原理也差不多了。"><a href="#经过这次原理上的分析，基本上hexo的原理也差不多了。" class="headerlink" title="经过这次原理上的分析，基本上hexo的原理也差不多了。"></a>经过这次原理上的分析，基本上hexo的原理也差不多了。</h4><p>hexo g：只负责渲染md文件到html、css等到public目录下；<br>hexo d：负责将public目录下的文件全部上传到$username.github.io的仓库中，执行的是覆盖操作。</p>
+<p>hexo+github搭建博客基本上研究到这里，以后是一些定制化的配置。基本上不做深入研究。</p>
+<h4 id="最重要的还是能够坚持写博客。"><a href="#最重要的还是能够坚持写博客。" class="headerlink" title="最重要的还是能够坚持写博客。"></a>最重要的还是能够坚持写博客。</h4>
       
 
       
@@ -328,6 +349,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/07/14/docker-study-2-dockerfile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          docker study(2) -- dockerfile
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/07/12/firstblog-md/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">firstblog.md</div>
@@ -357,7 +387,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用hexo和github来搭建自己的github博客"><span class="toc-number">1.</span> <span class="toc-text">使用hexo和github来搭建自己的github博客</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#写这篇文章的原因："><span class="toc-number">1.0.0.1.</span> <span class="toc-text">写这篇文章的原因：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-准备条件"><span class="toc-number">1.0.1.</span> <span class="toc-text">0.准备条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装nodejs和git"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.安装nodejs和git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装hexo"><span class="toc-number">1.0.3.</span> <span class="toc-text">2.安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo是什么："><span class="toc-number">1.0.3.1.</span> <span class="toc-text">hexo是什么：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">安装hexo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建github-repo"><span class="toc-number">1.0.4.</span> <span class="toc-text">3.创建github repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-创建本地hexo博客目录（重要）"><span class="toc-number">1.0.5.</span> <span class="toc-text">4.创建本地hexo博客目录（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）创建hexo根目录。"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">（1）创建hexo根目录。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-本地hexo目录关联远程github仓库"><span class="toc-number">1.0.6.</span> <span class="toc-text">5.本地hexo目录关联远程github仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-写博客的步骤"><span class="toc-number">1.0.7.</span> <span class="toc-text">6.写博客的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-new-“博客名字”"><span class="toc-number">1.0.7.0.1.</span> <span class="toc-text">#hexo new “博客名字”</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-g"><span class="toc-number">1.0.7.0.2.</span> <span class="toc-text">#hexo g</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-s"><span class="toc-number">1.0.7.0.3.</span> <span class="toc-text">#hexo s</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-d"><span class="toc-number">1.0.7.0.4.</span> <span class="toc-text">#hexo d</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-一些小问题"><span class="toc-number">1.0.8.</span> <span class="toc-text">7.一些小问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#如何让首页的博客缩略显示而不是显示全部？"><span class="toc-number">1.0.8.0.1.</span> <span class="toc-text">如何让首页的博客缩略显示而不是显示全部？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#博客上传之后，去github仓库里找不到该md文件。"><span class="toc-number">1.0.8.0.2.</span> <span class="toc-text">博客上传之后，去github仓库里找不到该md文件。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-后记"><span class="toc-number">1.0.9.</span> <span class="toc-text">8.后记</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用hexo和github来搭建自己的github博客"><span class="toc-number">1.</span> <span class="toc-text">使用hexo和github来搭建自己的github博客</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#写这篇文章的原因："><span class="toc-number">1.0.0.1.</span> <span class="toc-text">写这篇文章的原因：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-准备条件"><span class="toc-number">1.0.1.</span> <span class="toc-text">0.准备条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装nodejs和git"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.安装nodejs和git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装hexo"><span class="toc-number">1.0.3.</span> <span class="toc-text">2.安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hexo是什么："><span class="toc-number">1.0.3.1.</span> <span class="toc-text">hexo是什么：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装hexo"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">安装hexo</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-创建github-repo"><span class="toc-number">1.0.4.</span> <span class="toc-text">3.创建github repo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-创建本地hexo博客目录（重要）"><span class="toc-number">1.0.5.</span> <span class="toc-text">4.创建本地hexo博客目录（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）创建hexo根目录。"><span class="toc-number">1.0.5.1.</span> <span class="toc-text">（1）创建hexo根目录。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-本地hexo目录关联远程github仓库"><span class="toc-number">1.0.6.</span> <span class="toc-text">5.本地hexo目录关联远程github仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-写博客的步骤"><span class="toc-number">1.0.7.</span> <span class="toc-text">6.写博客的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-new-“博客名字”"><span class="toc-number">1.0.7.0.1.</span> <span class="toc-text">#hexo new “博客名字”</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-g"><span class="toc-number">1.0.7.0.2.</span> <span class="toc-text">#hexo g</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-s"><span class="toc-number">1.0.7.0.3.</span> <span class="toc-text">#hexo s</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hexo-d"><span class="toc-number">1.0.7.0.4.</span> <span class="toc-text">#hexo d</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-一些小问题"><span class="toc-number">1.0.8.</span> <span class="toc-text">7.一些小问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#如何让首页的博客缩略显示而不是显示全部？"><span class="toc-number">1.0.8.0.1.</span> <span class="toc-text">如何让首页的博客缩略显示而不是显示全部？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#博客上传之后，去github仓库里找不到该md文件。"><span class="toc-number">1.0.8.0.2.</span> <span class="toc-text">博客上传之后，去github仓库里找不到该md文件。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-后记"><span class="toc-number">1.0.9.</span> <span class="toc-text">8.后记</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。"><span class="toc-number">1.0.9.0.1.</span> <span class="toc-text">1.github上穿件一个仓库，对因关联本地的hexo目录，我创建的是shuangyangqian-hexo，原则上这个名字是无所谓的，随意起。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-在本地hexo根目录执行下述操作"><span class="toc-number">1.0.9.0.2.</span> <span class="toc-text">2.在本地hexo根目录执行下述操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-写博客的步骤"><span class="toc-number">1.0.9.0.3.</span> <span class="toc-text">3.写博客的步骤</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经过这次原理上的分析，基本上hexo的原理也差不多了。"><span class="toc-number">1.0.9.1.</span> <span class="toc-text">经过这次原理上的分析，基本上hexo的原理也差不多了。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最重要的还是能够坚持写博客。"><span class="toc-number">1.0.9.2.</span> <span class="toc-text">最重要的还是能够坚持写博客。</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -469,11 +499,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
             
             <div class="clearfix"></div>
